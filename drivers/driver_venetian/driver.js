@@ -19,7 +19,8 @@ class MotionDriverVenetian extends MotionDriverGeneric {
     return [
       mdriver.BlindType.VenetianBlind,
       mdriver.BlindType.ShangriLaBlind,
-      mdriver.BlindType.DoubleRoller
+      mdriver.BlindType.DoubleRoller,
+      mdriver.BlindType.TiltOnlyBlind
    ]; 
   }
 

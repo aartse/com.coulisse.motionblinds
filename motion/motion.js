@@ -142,6 +142,7 @@ class MotionDriver extends EventEmitter {
         CurtainLeft: 13,
         CurtainRight: 14,
         DoubleRoller: 17,
+        TiltOnlyBlind: 22,
         Switch: 43
     }
     

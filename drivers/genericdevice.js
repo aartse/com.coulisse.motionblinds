@@ -483,7 +483,7 @@ class MotionDeviceGeneric extends Homey.Device {
     }
   }
 
-  async checkTiltCapability(on) {
+  async checkTiltCapability(on, tiltOnly) {
     if (on != undefined) {
       if (on) {
         if (!this.hasCapability('windowcoverings_tilt_set'))
@@ -492,6 +492,13 @@ class MotionDeviceGeneric extends Homey.Device {
         if (this.hasCapability('windowcoverings_tilt_set'))
           this.removeCapability('windowcoverings_tilt_set')
       }
+    }
+
+    if (tiltOnly) {
+      if (this.hasCapability('windowcoverings_set'))
+        await this.removeCapability('windowcoverings_set');
+      if (this.hasCapability('windowcoverings_state'))
+        await this.removeCapability('windowcoverings_state');
     }
   }
 
@@ -738,7 +745,9 @@ class MotionDeviceGeneric extends Homey.Device {
       if (msg.data.type != undefined) {
         this.checkTiltCapability(msg.data.type == this.mdriver.BlindType.VenetianBlind ||
                                  msg.data.type == this.mdriver.BlindType.ShangriLaBlind ||
-                                 msg.data.type == this.mdriver.BlindType.DoubleRoller);
+                                 msg.data.type == this.mdriver.BlindType.DoubleRoller ||
+                                 msg.data.type == this.mdriver.BlindType.TiltOnlyBlind,
+                                 msg.data.type == this.mdriver.BlindType.TiltOnlyBlind);
         if (msg.data.type == this.mdriver.BlindType.ShangriLaBlind ||
             msg.data.type == this.mdriver.BlindType.DoubleRoller)
           this.maxAngle = this.mdriver.Angle.DR_Close;

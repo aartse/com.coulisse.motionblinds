@@ -57,6 +57,7 @@
         "13": "Curtain (open left)",
         "14": "Curtain (open right)",
         "17": "Double roller",
+        "22": "Venetian blind (only tilt)",
         "43": "Switch"
     },
     "Operation": {
